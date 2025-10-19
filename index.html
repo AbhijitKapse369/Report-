@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Startup Validation Platform - Business Case Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h1>AI Startup Validation Platform</h1>
+                <p class="header-subtitle">Business Case Analysis Dashboard</p>
+            </div>
+            <div class="header-status">
+                <span class="status status--warning">Assessment: Needs Improvement</span>
+            </div>
+        </header>
+
+        <nav class="dashboard-nav">
+            <button class="nav-btn active" data-tab="executive">Executive Summary</button>
+            <button class="nav-btn" data-tab="financial">Financial Performance</button>
+            <button class="nav-btn" data-tab="metrics">Key Metrics</button>
+            <button class="nav-btn" data-tab="competitive">Competitive Analysis</button>
+            <button class="nav-btn" data-tab="risk">Risk Assessment</button>
+            <button class="nav-btn" data-tab="gtm">Go-to-Market</button>
+            <button class="nav-btn" data-tab="market">Market Opportunity</button>
+            <button class="nav-btn" data-tab="operational">Operational Metrics</button>
+        </nav>
+
+        <main class="dashboard-content">
+            <!-- Executive Summary -->
+            <section id="executive" class="tab-content active">
+                <div class="section-header">
+                    <h2>Executive Summary</h2>
+                    <button class="btn btn--outline btn--sm" onclick="window.print()">Print Section</button>
+                </div>
+                
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">31</div>
+                        <div class="metric-label">Beta Users</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">189</div>
+                        <div class="metric-label">Waitlist</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">67%</div>
+                        <div class="metric-label">Product-Market Fit</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">76%</div>
+                        <div class="metric-label">AI Accuracy</div>
+                    </div>
+                </div>
+
+                <div class="executive-grid">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Company Overview</h3>
+                            <p><strong>Founder:</strong> Mr. Anupam</p>
+                            <p><strong>Experience:</strong> 7+ years AI/ML product management</p>
+                            <p><strong>Stage:</strong> MVP with beta testing</p>
+                            <p><strong>Mission:</strong> Make market validation accessible to entrepreneurs through AI-powered social media analysis</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Value Proposition</h3>
+                            <p>24-hour validation reports at 90% lower cost than traditional research</p>
+                            <div class="pricing-info">
+                                <div class="pricing-tier">
+                                    <span class="price">£147</span>
+                                    <span class="tier">Basic</span>
+                                </div>
+                                <div class="pricing-tier">
+                                    <span class="price">£500</span>
+                                    <span class="tier">Premium</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__body">
+                        <h3>Current Assessment</h3>
+                        <div class="assessment-grid">
+                            <div class="assessment-item">
+                                <h4>Key Strengths</h4>
+                                <ul>
+                                    <li>Innovative AI solution</li>
+                                    <li>Experienced founder</li>
+                                    <li>Clear market need</li>
+                                    <li>Early traction</li>
+                                </ul>
+                            </div>
+                            <div class="assessment-item">
+                                <h4>Key Concerns</h4>
+                                <ul>
+                                    <li>Optimistic financial projections</li>
+                                    <li>Single founder risk</li>
+                                    <li>Aggressive CAC assumptions</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="overall-recommendation">
+                            <h4>Overall Assessment</h4>
+                            <p>Promising innovation but requires viability and scalability improvements</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Financial Performance -->
+            <section id="financial" class="tab-content">
+                <div class="section-header">
+                    <h2>Financial Performance</h2>
+                    <button class="btn btn--outline btn--sm" onclick="window.print()">Print Section</button>
+                </div>
+                
+                <!-- Compact 2x2 Financial Chart Grid -->
+                <div class="financial-chart-grid">
+                    <div class="financial-chart-card">
+                        <h4>Revenue Growth</h4>
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                    
+                    <div class="financial-chart-card">
+                        <h4>Customer Growth</h4>
+                        <canvas id="customerChart"></canvas>
+                    </div>
+                    
+                    <div class="financial-chart-card">
+                        <h4>Profit Margins</h4>
+                        <canvas id="profitChart"></canvas>
+                    </div>
+                    
+                    <div class="financial-chart-card">
+                        <h4>CAC vs LTV</h4>
+                        <canvas id="unitEconomicsChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="financial-table-container">
+                    <h3>Financial Summary by Year</h3>
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Customers</th>
+                                <th>Revenue (£)</th>
+                                <th>Net Profit (£)</th>
+                                <th>Profit Margin</th>
+                                <th>CAC (£)</th>
+                                <th>LTV (£)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="financialTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Key Business Metrics -->
+            <section id="metrics" class="tab-content">
+                <div class="section-header">
+                    <h2>Key Business Metrics</h2>
+                    <button class="btn btn--outline btn--sm" onclick="window.print()">Print Section</button>
+                </div>
+                
+                <div class="metrics-overview">
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">31</div>
+                            <div class="metric-label">Beta Users</div>
+                            <div class="metric-status"><span class="status status--success">Growing</span></div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">189</div>
+                            <div class="metric-label">Waitlist</div>
+                            <div class="metric-status"><span class="status status--success">Strong Demand</span></div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">67%</div>
+                            <div class="metric-label">Product-Market Fit</div>
+                            <div class="metric-status"><span class="status status--warning">Improving</span></div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">76%</div>
+                            <div class="metric-label">AI Accuracy</div>
+                            <div class="metric-status"><span class="status status--success">Good</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-overview">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Pricing Strategy</h3>
+                                <div class="pricing-tiers">
+                                    <div class="pricing-tier-detail">
+                                        <h4>Basic Plan</h4>
+                                        <div class="price-amount">£147/month</div>
+                                        <p>Core market validation features</p>
+                                    </div>
+                                    <div class="pricing-tier-detail">
+                                        <h4>Premium Plan</h4>
+                                        <div class="price-amount">£500/month</div>
+                                        <p>Advanced analytics &amp; priority support</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Market Opportunity</h3>
+                                <div class="market-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-value">12,000</span>
+                                        <span class="stat-label">UK Tech Startups</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-value">35%</span>
+                                        <span class="stat-label">Startup Failure Rate</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-value">2.5%</span>
+                                        <span class="stat-label">Target Market Penetration</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Competitive Analysis -->
+            <section id="competitive" class="tab-content">
+                <div class="section-header">
+                    <h2>Competitive Analysis</h2>
+                    <button class="btn btn--outline btn--sm" onclick="window.print()">Print Section</button>
+                </div>
+                
+                <div class="competitive-matrix">
+                    <h3>Competitive Positioning Matrix</h3>
+                    <div class="competitor-cards" id="competitorCards">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Risk Assessment -->
+            <section id="risk" class="tab-content">
+                <div class="section-header">
+                    <h2>Risk Assessment</h2>
+                    <button class="btn btn--outline btn--sm" onclick="window.print()">Print Section</button>
+                </div>
+                
+                <!-- Compact 1x3 Horizontal Risk Chart Layout -->
+                <div class="risk-chart-horizontal">
+                    <div class="risk-chart-card">
+                        <h4>Risk Matrix</h4>
+                        <canvas id="riskChart"></canvas>
+                    </div>
+                    
+                    <div class="risk-chart-card">
+                        <h4>Risk Scores</h4>
+                        <canvas id="riskScoresChart"></canvas>
+                    </div>
+                    
+                    <div class="risk-chart-card">
+                        <h4>Mitigation Status</h4>
+                        <canvas id="mitigationChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card__body">
+                        <h3>Risk Summary</h3>
+                        <div class="risk-list" id="riskList">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Go-to-Market Strategy -->
+            <section id="gtm" class="tab-content">
+                <div class="section-header">
+                    <h2>Go-to-Market Strategy</h2>
+                    <button class="btn btn--outline btn--sm" onclick="window.print()">Print Section</button>
+                </div>
+                
+                <div class="gtm-grid">
+                    <div class="card gtm-chart-card">
+                        <div class="card__body">
+                            <h3>Channel Effectiveness</h3>
+                            <canvas id="channelChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Channel Analysis</h3>
+                            <div class="channel-list" id="channelList">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Market Opportunity -->
+            <section id="market" class="tab-content">
+                <div class="section-header">
+                    <h2>Market Opportunity</h2>
+                    <button class="btn btn--outline btn--sm" onclick="window.print()">Print Section</button>
+                </div>
+                
+                <div class="market-grid">
+                    <div class="card market-chart-card">
+                        <div class="card__body">
+                            <h3>Market Segments</h3>
+                            <canvas id="marketChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Revenue Potential</h3>
+                            <div class="market-segments" id="marketSegments">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Operational Metrics -->
+            <section id="operational" class="tab-content">
+                <div class="section-header">
+                    <h2>Operational Metrics</h2>
+                    <button class="btn btn--outline btn--sm" onclick="window.print()">Print Section</button>
+                </div>
+                
+                <div class="operational-grid">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Technology Stack</h3>
+                            <ul>
+                                <li>AI/ML Platform: Custom algorithms</li>
+                                <li>Data Sources: Social media APIs</li>
+                                <li>Infrastructure: Cloud-based</li>
+                                <li>Security: Data privacy compliant</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Service Delivery</h3>
+                            <div class="metric-row">
+                                <span>Report Generation Time:</span>
+                                <span>24 hours</span>
+                            </div>
+                            <div class="metric-row">
+                                <span>AI Accuracy:</span>
+                                <span>76%</span>
+                            </div>
+                            <div class="metric-row">
+                                <span>Data Coverage:</span>
+                                <span>Multiple platforms</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Team Scaling Plans</h3>
+                            <div class="scaling-timeline">
+                                <div class="timeline-item">
+                                    <strong>Year 1:</strong> Core team expansion
+                                </div>
+                                <div class="timeline-item">
+                                    <strong>Year 2:</strong> Technical team growth
+                                </div>
+                                <div class="timeline-item">
+                                    <strong>Year 3:</strong> Sales &amp; marketing focus
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Operational Readiness</h3>
+                            <div class="readiness-indicators">
+                                <div class="indicator">
+                                    <span class="status status--success">MVP Ready</span>
+                                </div>
+                                <div class="indicator">
+                                    <span class="status status--warning">Scaling Plan</span>
+                                </div>
+                                <div class="indicator">
+                                    <span class="status status--error">Team Expansion</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card__body">
+                        <h3>Key Performance Indicators</h3>
+                        <div class="kpi-grid">
+                            <div class="kpi-item">
+                                <h4>Current Metrics</h4>
+                                <ul>
+                                    <li>Team Size: 1 person</li>
+                                    <li>Daily Capacity: 50 reports</li>
+                                    <li>Platform Uptime: 99.5%</li>
+                                    <li>API Calls: 10K/month</li>
+                                </ul>
+                            </div>
+                            <div class="kpi-item">
+                                <h4>Year 1 Targets</h4>
+                                <ul>
+                                    <li>Team Size: 2 people</li>
+                                    <li>Daily Capacity: 100 reports</li>
+                                    <li>Platform Uptime: 99.8%</li>
+                                    <li>API Calls: 25K/month</li>
+                                </ul>
+                            </div>
+                            <div class="kpi-item">
+                                <h4>Year 5 Vision</h4>
+                                <ul>
+                                    <li>Team Size: 6 people</li>
+                                    <li>Daily Capacity: 500 reports</li>
+                                    <li>Platform Uptime: 99.9%</li>
+                                    <li>API Calls: 100K/month</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recommendations Section moved to Executive Summary -->
+                <div class="section-header">
+                    <h2>Recommendations &amp; Action Items</h2>
+                    <button class="btn btn--outline btn--sm" onclick="window.print()">Print Section</button>
+                </div>
+                
+                <div class="recommendations-summary">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Endorsement Status</h3>
+                            <div class="endorsement-status">
+                                <span class="status status--warning">Not Ready - Close but needs improvements</span>
+                            </div>
+                            <p>The platform shows promise but requires key improvements before endorsement.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="recommendations-grid" id="recommendationsGrid">
+                </div>
+                
+                <div class="action-timeline">
+                    <h3>Implementation Timeline</h3>
+                    <div class="timeline">
+                        <div class="timeline-step">
+                            <span class="timeline-badge">1-2 weeks</span>
+                            <div class="timeline-content">
+                                <h4>Immediate Actions</h4>
+                                <p>Compliance plan implementation</p>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <span class="timeline-badge">2-3 weeks</span>
+                            <div class="timeline-content">
+                                <h4>Short-term Fixes</h4>
+                                <p>Financial model refinement &amp; growth roadmap</p>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <span class="timeline-badge">3-4 weeks</span>
+                            <div class="timeline-content">
+                                <h4>Strategic Development</h4>
+                                <p>Innovation proof pack creation</p>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <span class="timeline-badge">4-8 weeks</span>
+                            <div class="timeline-content">
+                                <h4>Long-term Improvements</h4>
+                                <p>Team strengthening &amp; co-founder search</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
